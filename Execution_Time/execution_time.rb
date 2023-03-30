@@ -18,7 +18,7 @@ end
 
 # The time complexity for Phase 1 is O(n^2)
 
-p my_min(list) # -5
+#p my_min(list) # -5
 
 #Phase 2
 def my_min2(array)
@@ -56,3 +56,40 @@ def subsum1(array)
 end
 
 #time complexity of subsum phase 1 is O(n^2)
+
+# Phase 2
+
+def subsum2(array)
+    
+    largest = array[0]
+    current = 0
+    
+    array.each do |num|
+        sum = num + current 
+        if sum > current 
+            current = sum 
+            largest = sum 
+        elsif sum < current && sum + current > 0
+            current += sum  
+        else
+            current = 0
+        end
+    end 
+
+    # (0...array.length-1).each do |i|
+    #     sum = array[i] + array[i+1]
+    #     if sum > current 
+    #         current = sum 
+    #         largest = sum 
+    #     elsif sum < current && sum + current > 0
+    #         current = sum + current 
+    #     else
+    #         current = 0
+    #     end
+    # end 
+    largest 
+end
+
+p subsum2(list1) # 8
+p subsum2(list2) # 8
+# p subsum2(list3) # -1
