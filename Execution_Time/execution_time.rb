@@ -40,6 +40,7 @@ end
 list1 = [5, 3, -7] #8
 list2 = [2, 3, -6, 7, -6, 7] #8
 list3 = [-5, -1, -3] #-1
+list4 = [-2, -2, -2, -2, -2, -2, 50, -2, -2, -2, -2]
 
 def subsum1(array)
     sub_arr = []
@@ -62,34 +63,26 @@ end
 def subsum2(array)
     
     largest = array[0]
-    current = 0
-    
-    array.each do |num|
-        sum = num + current 
-        if sum > current 
-            current = sum 
-            largest = sum 
-        elsif sum < current && sum + current > 0
-            current += sum  
-        else
+    current = array[0]
+
+    if array.sum < 0
+        return array.max
+    end
+
+    (1...array.length).each do |i|
+        current += array[i] 
+        if current > largest
+            largest = current
+        elsif current < 0
             current = 0
         end
     end 
-
-    # (0...array.length-1).each do |i|
-    #     sum = array[i] + array[i+1]
-    #     if sum > current 
-    #         current = sum 
-    #         largest = sum 
-    #     elsif sum < current && sum + current > 0
-    #         current = sum + current 
-    #     else
-    #         current = 0
-    #     end
-    # end 
     largest 
 end
 
+#time complexity O(n)
 p subsum2(list1) # 8
 p subsum2(list2) # 8
-# p subsum2(list3) # -1
+p subsum2(list3) # -1
+p subsum2(list4)
+
