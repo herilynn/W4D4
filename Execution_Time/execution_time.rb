@@ -65,17 +65,21 @@ def subsum2(array)
     largest = array[0]
     current = array[0]
 
-    if array.sum < 0
-        return array.max
-    end
+    # # works but illegal because this is the code we are making outside the hood
+    # if array.sum < 0
+    #     return array.max
+    # end
 
     (1...array.length).each do |i|
-        current += array[i] 
-        if current > largest
-            largest = current
-        elsif current < 0
+        if current < 0
             current = 0
         end
+
+        current += array[i]
+
+        if current > largest
+            largest = current 
+        end 
     end 
     largest 
 end
